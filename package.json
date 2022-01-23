@@ -3,10 +3,19 @@
   "version": "0.9.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
+    "start:electron": "ng build && electron .",
     "build": "ng build",
+    "build:windows": "ng build && electron-builder --win --dir",
+    "dist:windows": "ng build && electron-builder --win",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
+  },
+  "build": {
+    "files": [
+      "dist/am2h-core-app/*",
+      "index.js"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -30,6 +39,8 @@
     "@angular/compiler-cli": "~13.1.0",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
+    "electron": "^16.0.7",
+    "electron-builder": "^22.14.5",
     "jasmine-core": "~3.10.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
