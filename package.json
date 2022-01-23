@@ -8,10 +8,16 @@
     "build": "ng build",
     "build:windows": "ng build && electron-builder --win --dir",
     "dist:windows": "ng build && electron-builder --win",
+    "build:linux": "ng build && electron-builder --linux --dir",
+    "dist:linux": "ng build && electron-builder --linux",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "build": {
+    "appId": "am2h-core-app",
+    "linux": {
+      "category": "Utility"
+    },
     "files": [
       "dist/am2h-core-app/*",
       "index.js"
