@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectorService } from '../connector.service';
 
 @Component({
   selector: 'app-devices',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DevicesComponent implements OnInit {
 
-  constructor() { }
+  timestamp="123456789";
+  constr:string="";
+
+  constructor(private con: ConnectorService) { }
 
   ngOnInit(): void {
+    this.constr=this.con.getName();
   }
 
 }

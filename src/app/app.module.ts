@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { DevicesComponent } from './devices/devices.component';
 import { MeasuresComponent } from './measures/measures.component';
 import { SettingsComponent } from './settings/settings.component';
+import { TimestampPipe } from './timestamp.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SettingsComponent } from './settings/settings.component';
     AppNavComponent,
     DevicesComponent,
     MeasuresComponent,
-    SettingsComponent
+    SettingsComponent,
+    TimestampPipe
   ],
   imports: [
     BrowserModule,
