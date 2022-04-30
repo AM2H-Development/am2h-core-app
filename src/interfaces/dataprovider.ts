@@ -6,4 +6,5 @@ export abstract class DataProvider {
     abstract connect(params:any):void
     abstract observe(filter:string):Observable<IMessage>
     abstract publish(topic:string, message:string, retained:boolean):boolean
+    abstract connectionStatus(): Observable<boolean>
 }

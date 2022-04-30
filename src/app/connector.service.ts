@@ -8,11 +8,15 @@ import { MqttProviderService } from './mqtt-provider.service';
 })
 export class ConnectorService {
   private dataProvider : DataProvider
-  private mqttCredentials = {hostname:"server-mh.fritz.box","port":9001}
-  private providerService = MqttProviderService 
+  private serverConfig = {hostname:"server-mh.fritz.box","port":9001}
 
   constructor() {
-    this.dataProvider= new this.providerService();
+    let dataService;
+    if (true){
+      dataService = MqttProviderService 
+    }
+
+    this.dataProvider= new dataService();
    }
 
   isConnected(): boolean {
@@ -21,7 +25,7 @@ export class ConnectorService {
 
   connect(): void {
     console.log(`connect`);
-    this.dataProvider.connect(this.mqttCredentials);
+    this.dataProvider.connect(this.serverConfig);
   }
 
   observe(filter: string): Observable<IMessage> {
@@ -30,6 +34,10 @@ export class ConnectorService {
 
   publish(topic: string, message: string, retained:boolean=false): boolean {
     return this.dataProvider.publish(topic,message,retained);
+  }
+
+  connectionStatus(): Observable<boolean>{
+    return this.dataProvider.connectionStatus()
   }
 
   getName(): string{return "connector"}

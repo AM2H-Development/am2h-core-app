@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, Subscriber } from 'rxjs';
+import { map, Observable, Subject, Subscriber } from 'rxjs';
 import { DataProvider } from 'src/interfaces/dataprovider';
 import { IMqttMessage, MqttModule, IMqttServiceOptions, MqttService} from 'ngx-mqtt';
 import { IMessage } from './connector.service';
 
 export class MqttProviderService implements DataProvider{
   private mqttService: MqttService|undefined;
+  private connection:Subject<boolean> = new Subject<boolean>();
+  private connected=false;
 
   constructor() { }
 
   isConnected(): boolean {
-    return !(this.mqttService===undefined)
+    return this.connected
+  }
+
+  connectionStatus(): Observable<boolean>{
+    return this.connection
   }
 
   connect(params: any): void {
@@ -19,8 +25,13 @@ export class MqttProviderService implements DataProvider{
       port: params["port"],
       path: '/'
     }
-    if (!this.mqttService===undefined) { this.mqttService?.disconnect() }
+    this.mqttService?.disconnect()
+    this.connection.next(false)
     this.mqttService= new MqttService(options);
+    this.mqttService.onConnect.subscribe( () => {
+      this.connected=true
+      this.connection.next(true)
+    })
   }
 
   observe(filter: string): Observable<IMessage> {
