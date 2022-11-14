@@ -104,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "am2h-core-app"
+  "cli": {
+    "analytics": "14949002-bf59-448e-9f7a-0e5032caebc0"
+  }
 }
