@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "am2h-core-app:build:production"
+              "buildTarget": "am2h-core-app:build:production"
             },
             "development": {
-              "browserTarget": "am2h-core-app:build:development"
+              "buildTarget": "am2h-core-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "am2h-core-app:build"
+            "buildTarget": "am2h-core-app:build"
           }
         },
         "test": {
